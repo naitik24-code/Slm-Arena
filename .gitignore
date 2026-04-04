@@ -1,0 +1,31 @@
+# Node.js
+node_modules/
+dist/
+build/
+.npm
+*.log
+
+# Python
+venv/
+backend/venv/
+__pycache__/
+*.pyc
+uvicorn.log
+pip_out.txt
+
+# Environment / Sensitive
+.env
+.env.local
+
+# Project Specific
+slm-benchmark-*.json
+slm-conversations/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+.trae/
