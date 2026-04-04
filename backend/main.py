@@ -86,7 +86,7 @@ async def query_model(model: str, prompt: str, max_tokens: int) -> ModelResult:
     mem_snapshot = psutil.Process().memory_info().rss / (1024 * 1024)
     
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        async with httpx.AsyncClient(timeout=180.0) as client:
             response = await client.post(
                 f"{OLLAMA_BASE_URL}/api/generate",
                 json={
@@ -198,7 +198,7 @@ async def stream_model(model: str, prompt: str, max_tokens: int = 512):
         token_count = 0
         
         try:
-            async with httpx.AsyncClient(timeout=60.0) as client:
+            async with httpx.AsyncClient(timeout=180.0) as client:
                 async with client.stream(
                     "POST",
                     f"{OLLAMA_BASE_URL}/api/generate",

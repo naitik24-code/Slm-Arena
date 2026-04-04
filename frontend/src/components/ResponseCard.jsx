@@ -106,7 +106,10 @@ export default function ResponseCard({ model, state, isFastest, showFullWidth = 
         }}
       >
         {!text && !done && (
-          <div aria-hidden="true">
+          <div aria-hidden="true" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ fontSize: '12px', color: 'var(--text3)', marginBottom: '4px' }}>
+              Initializing model... (this may take 1-2 mins for large models like Llama3)
+            </div>
             <div className="skeleton-line skeleton"></div>
             <div className="skeleton-line skeleton"></div>
             <div className="skeleton-line skeleton"></div>

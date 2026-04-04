@@ -99,8 +99,8 @@ export default function ChatFeed({ activeConversation, streamingTokens, isRunnin
                 
                 {/* Fallback for when benchmark is starting but no tokens yet */}
                 {!hasResults && isLastTurn && isRunning && Object.keys(streamingTokens).length === 0 && (
-                   <div style={{ color: 'var(--text3)', fontSize: '13px', padding: '10px' }}>
-                     Starting benchmark...
+                   <div style={{ color: 'var(--text3)', fontSize: '13px', padding: '10px', backgroundColor: 'var(--surface2)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                     Benchmarking started... Initializing models (Llama3 might take up to 3 mins to load)...
                    </div>
                 )}
               </div>
