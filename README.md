@@ -41,7 +41,7 @@ The easiest way to get started. Handles all dependencies and networking automati
 
 **Windows:**
 ```powershell
-.\scripts\start.ps1
+.\start.bat
 ```
 
 **Mac/Linux:**

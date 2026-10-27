@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 import sys
 import time
 from typing import List, Optional
@@ -30,7 +31,7 @@ app.add_middleware(
 )
 
 # Constants
-OLLAMA_BASE_URL = "http://localhost:11434"
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE", "http://localhost:11434")
 DEFAULT_MODELS = ["mistral", "phi3", "llama3"]
 
 # Pydantic Models

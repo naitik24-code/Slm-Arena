@@ -1,0 +1,3 @@
+/* Restore document scrolling from the legacy chat-only shell. */
+html,body,#root{min-height:100vh}
+body{height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}

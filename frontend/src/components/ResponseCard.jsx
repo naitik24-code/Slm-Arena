@@ -56,12 +56,14 @@ export default function ResponseCard({ model, state, isFastest, showFullWidth = 
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: MODEL_COLORS[model],
-        color: 'white'
+        backgroundColor: 'var(--surface)',
+        color: 'var(--text)',
+        borderBottom: '1px solid var(--border)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 600 }}>
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: MODEL_COLORS[model] || 'var(--accent)' }} />
           <span style={{ textTransform: 'capitalize' }}>{model}</span>
-          <span className="badge" style={{ backgroundColor: 'rgba(255,255,255,0.2)', fontSize: '10px', padding: '2px 6px', borderRadius: '4px' }}>
+          <span className="badge" style={{ backgroundColor: 'var(--surface3)', color: 'var(--text2)', fontSize: '10px', padding: '2px 6px', borderRadius: '4px' }}>
             {MODEL_TAGS[model]}
           </span>
         </div>

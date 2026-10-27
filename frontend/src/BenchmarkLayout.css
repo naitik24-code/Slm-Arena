@@ -1,0 +1,10 @@
+/* Compare cards against the workspace width, not the full browser window. */
+.benchmark-feed{container-name:benchmark-feed;container-type:inline-size}
+@container benchmark-feed (min-width:560px){
+  .benchmark-feed .model-panel-grid.compare-on{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .benchmark-feed .model-panel-grid>div{height:clamp(245px,38vh,330px)!important}
+}
+@container benchmark-feed (max-width:559px){
+  .benchmark-feed .model-panel-grid.compare-on{grid-template-columns:minmax(0,1fr)!important}
+  .benchmark-feed .model-panel-grid>div{height:clamp(235px,40vh,300px)!important}
+}

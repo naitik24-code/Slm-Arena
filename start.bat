@@ -1,9 +1,50 @@
 @echo off
-echo Starting FastAPI Backend (Port 8080)...
-start "SLM Backend" cmd /k "call .\venv\Scripts\activate.bat && cd backend && uvicorn main:app --port 8080"
+setlocal
+cd /d "%~dp0"
+title SLM Arena
 
-echo Starting React Frontend...
-start "SLM Frontend" cmd /k "cd frontend && npm run dev"
+echo.
+echo  SLM Arena - local launcher
+echo  =========================
+echo.
 
-echo Both servers are launching in new terminal windows!
-echo Frontend UI will load at -> http://localhost:5173
+where docker >nul 2>&1
+if errorlevel 1 (
+  echo Docker was not found. Install Docker Desktop and try again.
+  pause
+  exit /b 1
+)
+
+docker info >nul 2>&1
+if errorlevel 1 (
+  echo Docker Desktop is not running. Start it, then run start.bat again.
+  pause
+  exit /b 1
+)
+
+curl.exe --silent --fail http://localhost:11434/api/tags >nul 2>&1
+if errorlevel 1 echo Ollama is not responding. The app will start, but model runs need Ollama.
+
+echo Building and starting the app...
+docker compose up --build -d
+if errorlevel 1 (
+  echo.
+  echo Startup failed. Check Docker Desktop and the messages above.
+  pause
+  exit /b 1
+)
+
+echo Waiting for the API...
+for /L %%i in (1,1,30) do (
+  curl.exe --silent --fail http://localhost/api/health >nul 2>&1
+  if not errorlevel 1 goto ready
+  timeout /t 2 /nobreak >nul
+)
+
+echo The API is still starting. You can inspect it with: docker compose logs -f
+:ready
+echo Opening SLM Arena at http://localhost
+start "" "http://localhost"
+echo.
+echo To stop the app later, run: docker compose down
+pause
